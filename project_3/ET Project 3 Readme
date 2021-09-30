@@ -41,6 +41,7 @@ We obtain data using PushShift API to collect data from two subreddits.
     - Determine stem to be used: Snow Stemmer
 2. Exploratory Data Analysis and Modeling
     - Data Visualization
+        - Word Cloud
         - Word Count
         - Ngram visualization
              - Unigram
