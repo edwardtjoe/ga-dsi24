@@ -1,0 +1,89 @@
+**Problem Statement:**
+
+There exists an argument that the inherent bias in income levels to the participation and results of standardized exams such as the ACT and the SAT. Proponents of this stance suggest that higher income households hold a distinct advantage over households with lower income levels. This project explores the relationship between household income and ACT/SAT participation rates and results. Where ACT and SAT participation and results show positive correlation, it may be equitable for more federal funding to be allocated to states which have lower median household income to supplement household expenditures on education. However, does a higher median household income level of a state suggest a higher examination participation and score in the state? 
+
+
+**Summary:**
+
+From our analysis, we see no clear link between a state's household income level and ACT/SAT participation and results. Median state household income level was used as compared to mean state household income level to reduce the potential disparity between higher and lower incomes. Our results show that participation and results of an examination is highly correlated, and that many states have a preference towards participating in one exam as opposed to the other. With greater preference on an exam, states may choose to focus more funding and manpower to prepare students for the exam. The greater focus of states on a specific exam may be the reason for the links between participation rates and results.
+
+
+**Data:**
+
+Five datasets are used for this project:
+Datasets used:
+
+1. (../data/act_2017.csv): 2017 ACT Results by State
+
+2. (../data/act_2018.csv): 2018 ACT Results by State
+
+3. (../data/sat_2017.csv)sat_2017.csv: 2017 SAT Results by State
+
+4. (../data/sat_2018.csv): 2018 SAT Results by State
+
+- ACT and SAT results include: participation, individual subjects (if availble) and composite or total scores.
+
+5. (../data/Median_Income_2017_2018.csv): 2017 and 2018 Median Household Income by State
+Source: (https://www.census.gov/data/tables/time-series/demo/income-poverty/historical-income-households.html)
+
+
+**Data Dictionary:**
+
+act_2017_part: 2017 ACT Participation Rate
+act_2017_eng: 2017 ACT English Score
+act_2017_math: 2017 ACT Math Score
+act_2017_read: 2017 ACT Reading Score
+act_2017_sci: 2017 ACT Science Score
+act_2017_comp: 2017 ACT Composite Score
+act_2018_part: 2018 ACT Participation Rate
+act_2018_comp: 2018 ACT Composite Score
+sat_2017_part: 2017 SAT Participation Rate
+sat_2017_read_write: 2017 SAT Evidence-Based Reading and Writing Score
+sat_2017_math: 2017 SAT Math Score
+sat_2017_total: 2017 SAT Total Score
+sat_2018_part: 2018 SAT Participation Rate
+sat_2018_read_write: 2018 SAT Evidence-Based Reading and Writing Score
+sat_2018_math: 2018 SAT Math Score
+sat_2018_total: 2018 SAT Total Score
+2017_median_income: 2017 Median Annual Household Income by State
+2018_median_income: 2018 Median Annual Household Income by State
+top_half_income_2017: Dummy Variable for States in the Top Half of Median Annual Income
+top_half_income_2018: Dummy Variable for States in the Top Half of Median Annual Income
+
+**Methodology**
+
+Data cleaning:
+1. Participation data was modified from a percentage into a decimal.
+2. Outlier values on individual exam score was modified by deriving from other exam scores wherever possible. 
+3. Incorrect string datas were cleaned by removing the non-numeric portion and then converted into numeric data.
+4. Variables were renamed by replacing capital letters with lowercase letters and replacing spaces with underscores.
+
+Exploratory Data Analysis:
+1. A heatmap was created to visualize overall data correlation. 
+2. Sorting through participation rates by state, we see that states with top participation rates in the respective exams are nearly consistent through the years. The same is also true for the lowest participation rates for each exams too.
+3. States with the highest composite score for 2017 ACT generally have the highest scores in 2018 ACT. This is also true for 2017 and 2018 SAT. In each examination, the top 4 out of 5 states with the highest score are the same.
+4. Only 3 states have participation over 50% for both ACT and SAT exams in both years: Florida, Georgia and Hawaii. This suggests that there may be a bias towards one exam as opposed to another exam in differing states.
+5. States with the lowest participation rates tend to repeat the trend through the years. There is a strong positive correlation between 2017 and 2018 ACT participation rates (0.92). There is also a strong positive correlation between 2017 and 2018 SAT participation rates (0.82).
+6. There is a trend of decreasing ACT participation between 2017 and 2018.
+7. There is a trend of increasing SAT participation between 2017 and 2018.
+8. There is a strong positive correlation between participation rates and exam results (0.79 - 0.87).
+9. In both years, the composite/total score of each exam seems to be bimodal.
+10. There is a moderate positive correlation between median income and exam results.
+11. There is a greater correlation between ACT results to income as compared to SAT results to income.
+12. We explore the trends between the annual data by visualizing participation rate, exam scores and annual median household income in multiple scatterplots. The results from regressing median household income to participation and results of both exams are mixed. As household income increases, there is an increase in both exam results, however, participation rates for ACT decreases while that of SAT increases.
+13. In grouping by top and bottom half of median income, there is a trend for states with higher median income levels to perform better than their peers in the lower median income level. However, participation rates are mixed, with states on the top half median income having lower rates of ACT participation and higher rates of SAT participation.
+
+
+**Conclusion:**
+
+Previous researches have suggested that there exists a link between household income levels and ACT and SAT scores.
+Overall, there is a mixed result between household income and examination participation and score. 
+However, when grouped by top and bottom half income levels, the observations above show there is a trend for household income levels to be positively correlated with higher exam scores.
+
+On the participation rates, the trends of participation on household incomes increase produce mixed results.
+Exam participation and results by state are persistent through the years, and states with greater participation in an exam show greater results as compared to states with lower participation.
+This suggests that there may be a third factor such as race or state level policies that may play a role in the participation of examinations and its resulting scores ([*source*](https://www.insidehighered.com/news/2010/06/21/new-evidence-racial-bias-sat)).
+Such persistence may suggest that there are state-level reasons for the persistence of such trend.
+For instance, states may have differing level of preference which may result in the difference in state participation rates of such exams. Notably, Western and North Eastern states such as California and New Hampshire tend to prefer the SATs while Mid-West states such as Wisconsin, Arkansas and Oklahoma prefer the ACTs ([*source*](https://www.collegeraptor.com/getting-in/articles/act-sat/preference-act-sat-state-infographic/)).
+
+As such, while grouping by top and bottom half income levels suggest a trend for household income levels to be positively correlated with higher exam scores, we recommend looking into and taking other factors into consideration when deciding whether federal funding should be increased to increase the rate of participation and results of ACT and SAT exams.

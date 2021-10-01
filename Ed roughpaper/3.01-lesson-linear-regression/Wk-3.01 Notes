@@ -1,0 +1,7 @@
+Linear regression == least square regression
+
+In Y = b0 + b1X + e:
+Error e = residual
+
+Variables with hats (^) are predicitions of what Y should be.
+
