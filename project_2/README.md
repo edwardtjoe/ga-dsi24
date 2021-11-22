@@ -1,38 +1,42 @@
-Problem Statement: 
+# Problem Statement: 
 
 Our client, Iowa Appraisals and Research Inc, faces a loss of customer confidence due to an unreliable property appraisal. As such, we attempt to build a predictive model to more accurately appraise the value of a property.
 
 
-Background: 
+# Background: 
 
 In the process of purchasing or selling a property, it must first be appraised for both parties to have an objective understanding of its value. In such cases, objectivity can be supported with data of the features of each property, where some features such as lot square footage are quantitative while others such as property quality are qualitative. Combining the tools in data science, we can provide a clearer understanding for what makes a property more valuable, and create a model to appropriately appraise the property value.
 
 
-Datasets Used:
+# Datasets Used:
 
-1. train.csv: Ames Housing Training Data (provided by General Assembly)
-2. test.csv: Ames Housing Test Data ex Target Column (provided by General Assembly)
-
-
-Data Dictionary:
-
-Column			Type		Description
-Lot_Area		int64		Lot size (sqft)
-MS_SubClass		object		Property Zoning Classification
-Overall_Qual	int64		Overall Quality of Property
-Exter_Qual		object		Property External Quality
-Total_Bsmt_SF	float64		Total Basement Area (sqft)
-Heating			object		Heating Type
-Neighborhood	object		Property Neighborhood Name
-Gr_Liv_Area		int64		Size of Living Area (sqft)
-Garage_Area		float64		Size of Garage (sqft)
-SalePrice		int64		Sale Price of Property
-SP_LA			float		Sale Price per Lot Area ($/sqft)
-House_Sold_Age	int64		Age of House at Sale (years)
-GLA_OQ			int64		Grade Living Area * Overall Property Quality
+|No.|File Name|Description|
+|-|-|-|
+|1.| train.csv| Ames Housing Training Data (provided by General Assembly)|
+|2.| test.csv| Ames Housing Test Data ex Target Column (provided by General Assembly)|
 
 
-Part 1: Data Cleaning
+# Data Dictionary:
+
+|Column	|		Type		|Description|
+|-|-|-|
+|Lot_Area		|int64	|	Lot size (sqft)|
+|MS_SubClass	|	object	|	Property Zoning Classification|
+|Overall_Qual	|int64	|	Overall Quality of Property|
+|Exter_Qual	|	object	|	Property External Quality|
+|Total_Bsmt_SF	|float64	|	Total Basement Area (sqft)|
+|Heating		|	object	|	Heating Type|
+|Neighborhood|	object	|	Property Neighborhood Name|
+|Gr_Liv_Area|		int64	|	Size of Living Area (sqft)|
+|Garage_Area	|	float64	|	Size of Garage (sqft)|
+|SalePrice	|	int64	|	Sale Price of Property|
+|SP_LA		|	float	|	Sale Price per Lot Area ($/sqft)|
+|House_Sold_Age|	int64		|Age of House at Sale (years)|
+|GLA_OQ		|	int64	|	Grade Living Area * Overall Property Quality|
+
+# Methodology
+
+## Part 1: Data Cleaning
 
 We conduct several data cleaning for readability and processing purposes. When we first read the dataset, we found many missing values in multiple columns. As and when we can, we impute the values as zero and provide justification for such cases. In general, a missing value denotes the absence of such features. For instance, the absence of a garage had originally been inputted as a 'nan' value. In such cases, we replace the 'nan' values with '0' to denote the absence of a garage and enable the datapoint to be processed in our model.
 
@@ -43,7 +47,7 @@ In addition, there were several qualitative variables which have an ordinal natu
 We created several dummies based on the presence or absence of a feature. For instance, under the variable 'Alley', we find two unique values, 'Gravel' and 'Paved'. We dummified this variable into '1's and '0's, where '1' represents the presence of a Gravel or Paved Alley separately, and '0' on both columns denotee the absence of an alley.
 
 
-Part 2: Exploratory Data Analysis
+## Part 2: Exploratory Data Analysis
 
 We conducted several EDAs to visualize the effect of some variables and drop outliers.
 
@@ -52,7 +56,7 @@ Visualization provides a meaningful insight onto the baseline effects of some va
 We also dropped several outliers in which were large deviations and unlikely to be meaningful to our model. In such cases, the negative predictive value of such observations exceed that of its positive value of inclusion. For instance, we found some datapoints with outlier lot area values as compared to its expected sale price. Such outliers may be due to external conditions which are not quantified in our original dataset. As such, we have dropped such observations.
 
 
-Part 3: Predictive Modeling
+## Part 3: Predictive Modeling
 
 We create several models based on differing purposes.
 
@@ -68,12 +72,12 @@ Our fifth model is a lasso model based on a subset of features used in our fourt
 
 Our sixth and final model is a lasso model based on all features used in our fifth model, with an addition of our engineered feature which combines grade living area and overall property quality. We find that this is our best model in all metrics: R^2 and RMSE on all training, testing and Kaggle scores. We attribute this drastic improvement to the inclusion of our featured engineer, which provides a significant amount of predictive value.
 
-Part 4: Predictive Model Target Application
+## Part 4: Predictive Model Target Application
 
 In this section, we cleaned and processed the data in the same steps as we had in Part 1, and ran our fourth, fifth and sixth predictive model from Part 3 to the Kaggle target dataset. We find that a limited number of observations (8) had provided a very meaningful amount of predictive value to our target data due to it's value as high-impact variables.
 
 
-Part 5: Conclusion and Recommendation
+## Part 5: Conclusion and Recommendation
 
 We conclude by observing a few things. Firstly, our model has greater predictive value than that of the baseline model. Secondly, a lasso model is more appropriate than a ridge model, as it completely excludes several variables instead of minimizing its value. Thirdly, we find that a combination of quantitative and qualitative variables provide a more meaningful predictive value than using only quantitative values. Next, we find that the inclusion of a limited number of high-impact variables provide greater value than a larger number of lower-impact variables due to the noise caused by the extra variables without providing meaningful predictive power.
 
